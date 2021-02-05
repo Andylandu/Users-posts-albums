@@ -1,0 +1,48 @@
+.mainFooter {
+  background-color: #333;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.mainFooter > .para {
+  color: white;
+  font-size: 1.5em;
+  width: 80%;
+  border-bottom: 1px solid #eee;
+  margin: 0 auto 3px;
+}
+
+.social__icon i {
+  color: #f2d;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.social__icon i:hover {
+  background-color: #f2d;
+  color: #222;
+  border-radius: 5px;
+}
+
+.copy__right {
+  color: white;
+  font-size: 1.2em;
+  padding-bottom: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+  .mainFooter > .para {
+    font-size: 1em;
+  }
+
+  .social__icon i {
+    margin: 0 2px;
+  }
+
+  .copy__right {
+    font-size: 0.9em;
+  }
+}

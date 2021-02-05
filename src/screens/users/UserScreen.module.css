@@ -1,0 +1,36 @@
+.users__screen {
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url("../../images/computer_user.jpg") no-repeat center;
+  background-size: cover;
+  background-color: #eee;
+  margin-top: 38px;
+  color: #deaa86;
+}
+
+.users__screen > h2 {
+  text-transform: uppercase;
+  font-weight: 100;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.content .row:first-child p {
+  border-bottom: 1px solid #eee;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+.col {
+  margin: 5px 0;
+  flex: 0 0 30vw;
+}
