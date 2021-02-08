@@ -8,18 +8,18 @@ const initialState = {
 
 const photoReducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.PHOTO_REQUEST_START:
+        case actionTypes.PHOTOS_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.PHOTO_REQUEST_SUCCESS:
+        case actionTypes.PHOTOS_SUCCESS:
             return {
                 ...state,
                 photos: action.payload,
                 loading: false
             };
-        case actionTypes.PHOTO_REQUEST_FAIL:
+        case actionTypes.PHOTOS_FAIL:
             return {
                 ...state,
                 loading: false,

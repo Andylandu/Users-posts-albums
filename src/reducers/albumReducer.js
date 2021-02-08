@@ -8,18 +8,18 @@ const initialState = {
 
 const albumReducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.ALBUM_REQUEST_START:
+        case actionTypes.ALBUM_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.ALBUM_REQUEST_SUCCESS:
+        case actionTypes.ALBUM_SUCCESS:
             return {
                 ...state,
                 albums: action.payload,
                 loading: false
             };
-        case actionTypes.ALBUM_REQUEST_FAIL:
+        case actionTypes.ALBUM_FAIL:
             return {
                 ...state,
                 loading: false,

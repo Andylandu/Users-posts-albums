@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import uuid from 'uuid/v4';
 
 import classes from './AddPost.module.css';
 
 // Load action creator
 import { addPost } from '../../actions/postActions';
 
-export default function AddPostScreen(props) {
+const AddPostScreen = (props) => {
     const [state, setState] = useState({
         author: '',
         title: '',
@@ -29,7 +28,6 @@ export default function AddPostScreen(props) {
         props.show();
 
         const postData = {
-            id: uuid(),
             author: state.author,
             title: state.title,
             body: state.body
@@ -84,3 +82,5 @@ export default function AddPostScreen(props) {
         </div>
     );
 };
+
+export default AddPostScreen;

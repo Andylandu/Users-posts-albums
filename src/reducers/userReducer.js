@@ -8,18 +8,18 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.USER_REQUEST_START:
+        case actionTypes.USER_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.USER_REQUEST_SUCCESS:
+        case actionTypes.USER_SUCCESS:
             return {
                 ...state,
                 users: action.payload,
                 loading: false
             };
-        case actionTypes.USER_REQUEST_START:
+        case actionTypes.USER_FAIL:
             return {
                 ...state,
                 loading: false,

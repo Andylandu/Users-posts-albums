@@ -1,61 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import classes from './PhotoScreen.module.css';
 
+// Load components
+import Photos from '../../components/photos/Photos';
 import Spinner from '../../utils/spinner/Spinner';
 
-// Load action creators
-import { getPhotos } from '../../actions/photoActions';
-import { getUsers } from '../../actions/userActions';
-
-export default function PhotoSreen(props) {
-    const [album, setAlbum] = useState('');
+const PhotoSreen = ({ match, location }) => {
+    const [albumTitle, setAlbumTitle] = useState('');
+    const [albumId, setAlbumId] = useState('');
 
     const { photos, loading, error } = useSelector(state => state.photos);
-    const { users } = useSelector(state => state.users);
-    const dispatch = useDispatch();
+    const filteredPhotos = photos.filter((photo) => photo.albumId.toString() === albumId)
 
-    useEffect(() => {
-        if (props.location.search) {
-            const album = props.location.search.split('=')[1];
+    useEffect(() => {        
+        if (location.search) {
+            const album = location.search.split('=')[1];
 
-            setAlbum(album);
-        }
+            setAlbumTitle(album);
+        };  
         
-        if (props.match.params.id) {
-            dispatch(getPhotos(props.match.params.id));
-        }        
-
-        if (photos.length > 0) {
-            dispatch(getUsers());
-        };
-    }, [dispatch, photos.length, getUsers, getPhotos]);
-
-    let displayUsersPhotos = null;
-
-
-    if (photos.length > 0) {
-        displayUsersPhotos = photos.slice(0, 10).map((photo) => {
-            return (
-                <div key={photo.id} className={classes.card}>
-                    <img src={photo.url} />
-                    <div className={classes.card__content}>
-                        <h3>Photo {photo.id}</h3>
-                        <p>{photo.title}</p>
-                    </div>
-                </div>
-            );
-        });
-    };
+        if (match.params.id) {
+            setAlbumId(match.params.id)
+        }
+    }, [match, location]);    
     
     return (        
-        <div className={classes.photo__screen}>
-            <h2>Список всех фото в {album} альбоме</h2>
-            { loading && <Spinner />}
-            <div className={classes.content}>
-                {displayUsersPhotos}
-            </div>
-            {error && <p>{error}</p>}
+        <div className={classes.photo__screen}>            
+            { loading ? <Spinner /> : error ? <p>{error}</p> : (
+                <Fragment>
+                    <div className={classes.go__back}>
+                        <Link to="/albums" className={classes.link}>Go Back</Link>
+                    </div>
+                    <h2>Список первых десяти фото в {albumTitle} альбоме</h2>
+                    <Photos 
+                        photos={filteredPhotos}
+                    />
+                </Fragment>
+            )}
         </div>
-    )
-}
+    );
+};
+
+export default PhotoSreen;

@@ -1,0 +1,20 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.content .row:first-child p {
+  border-bottom: 1px solid #eee;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+.col {
+  margin: 5px 0;
+  flex: 0 0 30vw;
+}
